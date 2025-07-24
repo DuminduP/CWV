@@ -1,0 +1,275 @@
+        .service-images {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimized Core Web Vitals Example</title>
+    
+    <!-- GOOD: Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"></noscript>
+    
+    <!-- GOOD: Critical CSS inlined -->
+    <style>
+        /* Critical above-the-fold styles */
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5rem;
+        }
+        
+        /* GOOD: Reserve space for images to prevent CLS */
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* GOOD: Reserved space for dynamic content */
+        .dynamic-content-placeholder {
+            height: 200px;
+            background: #f9f9f9;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .service-images {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .service-images .service-box {
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(45deg, #ff9a56, #ff6b95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .optimized-button {
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .optimized-button:hover {
+            background: #45b7aa;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Optimized Website</h1>
+        <p>This page follows Core Web Vitals best practices</p>
+    </div>
+    
+    <!-- GOOD: Image with proper dimensions and loading optimization -->
+    <img src="https://via.placeholder.com/1200x400/667eea/ffffff?text=Optimized+Hero+Image+1200x400" 
+         alt="Hero Image" 
+         class="hero-image" 
+         width="1200" 
+         height="400"
+         loading="eager"
+         decoding="async"
+         onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'; this.style.color='white'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='✅ Optimized Hero Image (1200x400)'; this.src=''">
+    
+    <div class="content">
+        <div class="card">
+            <h2>About Our Services</h2>
+            <p>Content layout is stable because all images have proper dimensions.</p>
+            
+            <!-- GOOD: Images with explicit dimensions -->
+            <div class="service-images">
+                <img src="https://via.placeholder.com/300x200/ff9a56/ffffff?text=Service+1+Optimized" 
+                     alt="Service 1" 
+                     class="service-image"
+                     width="300" 
+                     height="200"
+                     loading="lazy"
+                     onerror="this.style.background='linear-gradient(45deg, #ff9a56, #ff6b95)'; this.src=''">
+                <img src="https://via.placeholder.com/300x200/4ecdc4/ffffff?text=Service+2+Optimized" 
+                     alt="Service 2" 
+                     class="service-image"
+                     width="300" 
+                     height="200"
+                     loading="lazy"
+                     onerror="this.style.background='linear-gradient(45deg, #4ecdc4, #44a08d)'; this.src=''">
+                <img src="https://via.placeholder.com/300x200/f093fb/ffffff?text=Service+3+Optimized" 
+                     alt="Service 3" 
+                     class="service-image"
+                     width="300" 
+                     height="200"
+                     loading="lazy"
+                     onerror="this.style.background='linear-gradient(45deg, #f093fb, #f5576c)'; this.src=''">
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Dynamic Content Loading</h2>
+            <!-- GOOD: Space reserved for dynamic content -->
+            <div class="dynamic-content-placeholder" id="dynamic-content">
+                <p>Loading optimized content...</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Optimized Interactive Elements</h2>
+            <button class="optimized-button" id="optimized-button">
+                Click Me (Fast Response)
+            </button>
+            <div id="result"></div>
+        </div>
+    </div>
+    
+    <!-- GOOD: Non-critical CSS loaded asynchronously -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <!-- GOOD: JavaScript at end of body, optimized for performance -->
+    <script>
+        // GOOD: Efficient event handling with debouncing
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
+        // GOOD: Optimized operation using requestAnimationFrame
+        function optimizedOperation() {
+            const button = document.getElementById('optimized-button');
+            button.disabled = true;
+            button.textContent = 'Processing...';
+            
+            // Use requestAnimationFrame to avoid blocking main thread
+            requestAnimationFrame(() => {
+                const start = performance.now();
+                
+                // Break heavy work into smaller chunks
+                let result = 0;
+                let iterations = 0;
+                const maxIterations = 1000000;
+                
+                function processChunk() {
+                    const chunkStart = performance.now();
+                    
+                    while (iterations < maxIterations && (performance.now() - chunkStart) < 5) {
+                        result += Math.random();
+                        iterations++;
+                    }
+                    
+                    if (iterations < maxIterations) {
+                        requestAnimationFrame(processChunk);
+                    } else {
+                        // Operation complete
+                        const duration = performance.now() - start;
+                        document.getElementById('result').innerHTML = 
+                            `✅ Optimized operation completed in ${duration.toFixed(2)}ms. Result: ${result.toFixed(2)}`;
+                        
+                        button.disabled = false;
+                        button.textContent = 'Click Me (Fast Response)';
+                    }
+                }
+                
+                processChunk();
+            });
+        }
+        
+        // GOOD: Wait for DOM content loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listener efficiently
+            document.getElementById('optimized-button').addEventListener('click', optimizedOperation);
+            
+            // GOOD: Load dynamic content without causing layout shift
+            setTimeout(function() {
+                const dynamicContent = document.getElementById('dynamic-content');
+                // Content fits in reserved space
+                dynamicContent.innerHTML = `
+                    <h3>✅ This content loaded without layout shift!</h3>
+                    <p>Space was reserved, so no jumping occurred.</p>
+                    <img src="https://via.placeholder.com/380x120/a8edea/333333?text=Stable+Content+Fits+Reserved+Space" 
+                         alt="Stable content"
+                         style="width:100%;max-width:380px;height:120px;border-radius:8px;"
+                         onerror="this.style.background='linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.style.color='#333'; this.style.fontWeight='bold'; this.innerHTML='✅ Stable Content (fits reserved space)'; this.src=''">
+                `;
+            }, 1500);
+            
+            // GOOD: Optimize scroll handling with passive listeners and debouncing
+            const optimizedScrollHandler = debounce(function() {
+                // Minimal scroll operations
+                const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+                console.log('Scroll progress:', Math.round(scrollPercent * 100) + '%');
+            }, 100);
+            
+            window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+        });
+        
+        // GOOD: Lazy load non-critical scripts
+        function loadScript(src) {
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = true;
+            document.head.appendChild(script);
+        }
+        
+        // Load analytics after initial paint
+        setTimeout(() => {
+            // Simulate efficient analytics
+            console.log('Analytics loaded efficiently');
+        }, 100);
+    </script>
+</body>
+</html>
