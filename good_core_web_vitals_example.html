@@ -6,8 +6,8 @@
     <title>Optimized Core Web Vitals Example</title>
     
     <!-- GOOD: Preload critical resources - responsive hero image -->
-    <link rel="preload" href="https://via.placeholder.com/1200x400/667eea/ffffff?text=Desktop+Hero+1200x400" as="image" media="(min-width: 768px)">
-    <link rel="preload" href="https://via.placeholder.com/800x600/667eea/ffffff?text=Mobile+Hero+800x600" as="image" media="(max-width: 767px)">
+    <link rel="preload" href="https://picsum.photos/1200x400/667eea/ffffff?text=Desktop+Hero+1200x400" as="image" media="(min-width: 768px)">
+    <link rel="preload" href="https://picsum.photos/800x600/667eea/ffffff?text=Mobile+Hero+800x600" as="image" media="(max-width: 767px)">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"></noscript>
     
@@ -109,9 +109,9 @@
     </div>
     
     <!-- GOOD: Responsive image with srcset and proper aspect ratios -->
-    <img srcset="https://via.placeholder.com/800x600/667eea/ffffff?text=Mobile+Hero+800x600 800w, https://via.placeholder.com/1200x400/667eea/ffffff?text=Desktop+Hero+1200x400 1200w"
+    <img srcset="https://picsum.photos/800x600/667eea/ffffff?text=Mobile+Hero+800x600 800w, https://picsum.photos/1200x400/667eea/ffffff?text=Desktop+Hero+1200x400 1200w"
          sizes="100vw"
-         src="https://via.placeholder.com/1200x400/667eea/ffffff?text=Desktop+Hero+1200x400"
+         src="https://picsum.photos/1200x400/667eea/ffffff?text=Desktop+Hero+1200x400"
          alt="Hero Image" 
          class="hero-image"
          loading="eager"
@@ -126,27 +126,27 @@
             
             <!-- GOOD: Images with srcset for responsive loading -->
             <div class="service-images">
-                <img srcset="https://via.placeholder.com/150x100/ff9a56/ffffff?text=Service+1+Mobile 150w, https://via.placeholder.com/300x200/ff9a56/ffffff?text=Service+1+Desktop 300w"
+                <img srcset="https://picsum.photos/150x100/ff9a56/ffffff?text=Service+1+Mobile 150w, https://picsum.photos/300x200/ff9a56/ffffff?text=Service+1+Desktop 300w"
                      sizes="(max-width: 768px) 150px, 300px"
-                     src="https://via.placeholder.com/300x200/ff9a56/ffffff?text=Service+1+Desktop"
+                     src="https://picsum.photos/300x200/ff9a56/ffffff?text=Service+1+Desktop"
                      alt="Service 1" 
                      class="service-image"
                      loading="lazy"
                      fetchpriority="low"
                      decoding="async"
                      onerror="this.style.background='linear-gradient(45deg, #ff9a56, #ff6b95)'; this.src=''">
-                <img srcset="https://via.placeholder.com/150x100/4ecdc4/ffffff?text=Service+2+Mobile 150w, https://via.placeholder.com/300x200/4ecdc4/ffffff?text=Service+2+Desktop 300w"
+                <img srcset="https://picsum.photos/150x100/4ecdc4/ffffff?text=Service+2+Mobile 150w, https://picsum.photos/300x200/4ecdc4/ffffff?text=Service+2+Desktop 300w"
                      sizes="(max-width: 768px) 150px, 300px"
-                     src="https://via.placeholder.com/300x200/4ecdc4/ffffff?text=Service+2+Desktop"
+                     src="https://picsum.photos/300x200/4ecdc4/ffffff?text=Service+2+Desktop"
                      alt="Service 2" 
                      class="service-image"
                      loading="lazy"
                      fetchpriority="low"
                      decoding="async"
                      onerror="this.style.background='linear-gradient(45deg, #4ecdc4, #44a08d)'; this.src=''">
-                <img srcset="https://via.placeholder.com/150x100/f093fb/ffffff?text=Service+3+Mobile 150w, https://via.placeholder.com/300x200/f093fb/ffffff?text=Service+3+Desktop 300w"
+                <img srcset="https://picsum.photos/150x100/f093fb/ffffff?text=Service+3+Mobile 150w, https://picsum.photos/300x200/f093fb/ffffff?text=Service+3+Desktop 300w"
                      sizes="(max-width: 768px) 150px, 300px"
-                     src="https://via.placeholder.com/300x200/f093fb/ffffff?text=Service+3+Desktop"
+                     src="https://picsum.photos/300x200/f093fb/ffffff?text=Service+3+Desktop"
                      alt="Service 3" 
                      class="service-image"
                      loading="lazy"
@@ -243,7 +243,7 @@
                 dynamicContent.innerHTML = `
                     <h3>✅ This content loaded without layout shift!</h3>
                     <p>Space was reserved, so no jumping occurred.</p>
-                    <img src="https://via.placeholder.com/380x120/a8edea/333333?text=Stable+Content+Fits+Reserved+Space" 
+                    <img src="https://picsum.photos/380x120/a8edea/333333?text=Stable+Content+Fits+Reserved+Space" 
                          alt="Stable content"
                          style="width:100%;max-width:380px;height:120px;border-radius:8px;"
                          onerror="this.style.background='linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.style.color='#333'; this.style.fontWeight='bold'; this.innerHTML='✅ Stable Content (fits reserved space)'; this.src=''">
