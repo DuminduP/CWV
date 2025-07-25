@@ -126,7 +126,7 @@
             
             <!-- GOOD: Images with srcset for responsive loading -->
             <div class="service-images">
-                <img srcset="/images/image1-150-100.webp 150w, /images/image1-150-100.webp 300w"
+                <img srcset="/images/image1-150-100.webp 150w, /images/image1-300-200.webp 300w"
                      sizes="(max-width: 768px) 150px, 300px"
                      src="/images/image1-150-100.webp"
                      alt="Service 2" 
@@ -135,7 +135,7 @@
                      fetchpriority="low"
                      decoding="async"
                     >
-                <img srcset="/images/image12-150-100.webp 150w, /images/image2-150-100.webp 300w"
+                <img srcset="/images/image12-150-100.webp 150w, /images/image2-300-200.webp 300w"
                      sizes="(max-width: 768px) 150px, 300px"
                      src="/images/image2-150-100.webp"
                      alt="Service 3" 
@@ -243,7 +243,7 @@
                 dynamicContent.innerHTML = `
                     <h3>✅ This content loaded without layout shift!</h3>
                     <p>Space was reserved, so no jumping occurred.</p>
-                    <img src="https://picsum.photos/380x120/a8edea/333333?text=Stable+Content+Fits+Reserved+Space" 
+                    <img src="/images/" 
                          alt="Stable content"
                          style="width:100%;max-width:380px;height:120px;border-radius:8px;"
                          onerror="this.style.background='linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.style.color='#333'; this.style.fontWeight='bold'; this.innerHTML='✅ Stable Content (fits reserved space)'; this.src=''">
