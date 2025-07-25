@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Optimized Core Web Vitals Example</title>
     
+    <!-- Improved font loading with display swap -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" media="print" onload="this.media='all'" crossorigin>
+    
     <!-- GOOD: Preload critical resources - responsive hero image -->
     <link rel="preload" href="/images/large-image1-1200-400.webp" as="image" media="(min-width: 768px)">
     <link rel="preload" href="/images/large-image1-800-600.webp"" as="image" media="(max-width: 767px)">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"></noscript>
     
     <!-- GOOD: Critical CSS inlined -->
     <style>
+        /* Update font-display strategy */
+        @font-face {
+            font-family: 'Roboto';
+            font-display: swap;
+        }
+        
         /* Critical above-the-fold styles */
         body {
             font-family: system-ui, -apple-system, sans-serif;
@@ -35,9 +43,13 @@
         
         /* GOOD: Reserve space for images to prevent CLS */
         .hero-image {
+            aspect-ratio: 16/9;
             width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: auto;
+            min-height: 400px;
+            background: #f0f0f0;
+            contain: layout paint;
+            content-visibility: auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -96,6 +108,8 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
         .optimized-button:hover {
             background: #45b7aa;
@@ -117,7 +131,7 @@
          loading="eager"
          fetchpriority="high"
          decoding="async"
-         onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'; this.style.color='white'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='✅ Responsive Hero Image'; this.src=''">
+    >
     
     <div class="content">
         <div class="card">
@@ -134,7 +148,7 @@
                      loading="lazy"
                      fetchpriority="low"
                      decoding="async"
-                    >
+                >
                 <img srcset="/images/image12-150-100.webp 150w, /images/image2-300-200.webp 300w"
                      sizes="(max-width: 768px) 150px, 300px"
                      src="/images/image2-150-100.webp"
@@ -143,7 +157,7 @@
                      loading="lazy"
                      fetchpriority="low"
                      decoding="async"
-                    >
+                >
                 <img srcset="/images/image3-150-100.webp150w, /images/image3-300-200.webp 300w"
                      sizes="(max-width: 768px) 150px, 300px"
                      src="/images/image3-150-100.webp"
@@ -152,7 +166,7 @@
                      loading="lazy"
                      fetchpriority="low"
                      decoding="async"
-                    >
+                >
             </div>
         </div>
         
@@ -178,6 +192,22 @@
     
     <!-- GOOD: JavaScript at end of body, optimized for performance -->
     <script>
+        // Add intersection observer for better performance
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px 0px'
+        });
+        
         // GOOD: Efficient event handling with debouncing
         function debounce(func, wait) {
             let timeout;
@@ -233,6 +263,11 @@
         
         // GOOD: Wait for DOM content loaded
         document.addEventListener('DOMContentLoaded', function() {
+            // Optimize images loading
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                imageObserver.observe(img);
+            });
+            
             // Add event listener efficiently
             document.getElementById('optimized-button').addEventListener('click', optimizedOperation);
             
